@@ -1,0 +1,34 @@
+name: 🚀 自动打包 Chrome 扩展
+
+on:
+  release:
+    types: [published]   # 只要你发布了 Release，就会触发
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取代码（精确到发布的 tag）
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: 打包成 ZIP（排除无用文件）
+        run: |
+          zip -r "ai-chat-navigator-${{ github.event.release.tag_name }}.zip" . \
+            -x ".git/**" \
+            -x ".github/**" \
+            -x "README.md" \
+            -x "LICENSE" \
+            -x "*.md" \
+            -x ".*" \
+            -x "__MACOSX/**" \
+            -x "*.DS_Store"
+
+      - name: 上传 ZIP 到本次 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ai-chat-navigator-${{ github.event.release.tag_name }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
