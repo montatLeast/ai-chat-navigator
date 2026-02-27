@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "AI聊天我的发言导航器",
+  "version": "1.0",
+  "description": "提取你自己的所有发言，点击快速滚动定位",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://grok.com/*",
+        "https://x.com/i/grok*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ]
+}
