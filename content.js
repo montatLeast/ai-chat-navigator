@@ -2,11 +2,13 @@ let currentSite = '';
 if (location.hostname.includes('chatgpt.com')) currentSite = 'chatgpt';
 else if (location.hostname.includes('gemini.google.com')) currentSite = 'gemini';
 else if (location.hostname.includes('grok.com') || location.hostname.includes('x.com')) currentSite = 'grok';
+else if (location.hostname.includes('claude.ai')) currentSite = 'claude';
 
 const userSelectors = {
   chatgpt: 'div[data-message-author-role="user"] .user-message-bubble-color',     // ChatGPT 超级稳定
   gemini: 'div.query-content span.user-query-bubble-with-background p.query-text-line.ng-star-inserted',     // Gemini（若失效请F12检查更新）
-  grok: 'div.items-end .message-bubble'               // Grok（来自开源扩展验证）
+  grok: 'div.items-end .message-bubble',               // Grok（来自开源扩展验证）
+  claude: 'div[data-testid="user-message"]'            // Claude（claude.ai）
 };
 
 let messageList = []; // {text, element}

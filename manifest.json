@@ -9,7 +9,8 @@
         "https://chatgpt.com/*",
         "https://gemini.google.com/*",
         "https://grok.com/*",
-        "https://x.com/i/grok*"
+        "https://x.com/i/grok*",
+        "https://claude.ai/*"
       ],
       "js": ["content.js"],
       "css": ["content.css"],
