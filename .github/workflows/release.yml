@@ -4,6 +4,9 @@ on:
   release:
     types: [published]   # 只要你发布了 Release，就会触发
 
+permissions:
+  contents: write   # 上传 ZIP 到 Release 需要写权限
+
 jobs:
   package:
     runs-on: ubuntu-latest
